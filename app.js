@@ -49,7 +49,7 @@ app.post('/login', function (req, res) {
         }
         else {
             req.session.user = {name: results[0].name, id: results[0].id}
-            res.redirect('/app/menu?userid=' + results[0].id);
+            res.redirect('/menu?userid=' + results[0].id);
         }
     });
 });
