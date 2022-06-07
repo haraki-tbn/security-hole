@@ -3,6 +3,7 @@ var app = express();
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var port = process.env.PORT || 5000
 var pool = mysql.createPool({
     connectionLimit : 10,
     user: 'root',
@@ -137,6 +138,6 @@ app.get('/customer/all/info', sessionCheck, function (req, res) {
     });
 });
 
-app.listen(3000, function () {
+app.listen(port, function () {
     console.log('Example app listening on port 3000!');
 });
