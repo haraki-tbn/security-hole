@@ -1,0 +1,22 @@
+html
+  head
+    title!= title
+  body
+    h1 あなたの情報
+    div
+      div(style={"float": "left"}) ユーザーID:
+      div(style={"float": "left", "font-weight": "bold"}) #{userId}
+    br
+    div
+      div(style={"float": "left"}) ユーザー名:
+      div(style={"float": "left", "font-weight": "bold"}) #{userName}
+    br
+    div
+      div(style={"float": "left"}) 上司ID:
+      div(style={"float": "left", "font-weight": "bold"}) #{bossId}
+    br
+    div
+      div(style={"float": "left"}) 上司名:
+      div(style={"float": "left", "font-weight": "bold"}) #{bossName}
+    br
+    a(href=`/app/menu?userid=${userId}`) メニューへ戻る

@@ -1,0 +1,17 @@
+html
+  head
+    title!= title
+  body
+    h1 顧客情報
+    table(style={"border": "solid 1px #000000", "border-collapse": "collapse"})
+      tr
+        th(style={"border": "solid 1px #ff0000"}) 顧客ID
+        th(style={"border": "solid 1px #ff0000"}) 顧客名
+        th(style={"border": "solid 1px #ff0000"}) 顧客住所
+      each item in list
+        tr
+          td(style={"border": "solid 1px #ff0000"}) #{item.id}
+          td(style={"border": "solid 1px #ff0000"}) #{item.name}
+          td(style={"border": "solid 1px #ff0000"}) #{item.address}
+    br
+    a(href=`/app/menu?userid=${userId}`) メニューへ戻る

@@ -1,0 +1,14 @@
+html
+  head
+    title!= title
+  body
+    h1 メニュー
+    div ようこそ#{userName}さん
+    h3 一般メニュー
+    ul
+      li: a(href=`/app/info?userid=${userId}`) あなたの情報
+      li: a(href=`/app/customer/info?userid=${userId}`) あなたの顧客情報
+    if roleId === 1
+      h3 管理者メニュー
+      ul
+        li: a(href='/app/customer/all/info') 全ての顧客情報

@@ -1,0 +1,16 @@
+html
+  head
+    title!= title
+  body
+    h1 顧客管理システム
+    h2 ログイン
+    form(method='post' action='/app/login')
+      div
+        label(for='email-input') Email:
+        input(type='text' name='email' id='email-input')
+      div
+        label(for='password-input') Password:
+        input(type='text' name='password' id='password-input')
+      button Login
+      if errorMsg
+        div(style={"color": "red"}) #{errorMsg}
