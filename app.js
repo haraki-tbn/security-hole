@@ -3,7 +3,7 @@ var app = express();
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var port = process.env.PORT || 5000
+var port = process.env.PORT || 3000
 var pool = mysql.createPool({
     connectionLimit : 10,
     user: 'root',
