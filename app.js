@@ -50,13 +50,19 @@ app.get('/login', function (req, res) {
 });
 
 app.post('/login', function (req, res) {
+    if (!req.body.email || !req.body.password) {
+        res.render('login', { title: 'Login', errorMsg: 'Email、Passwordを入力してください' });
+        return;
+    }
+
     const query = {
-        text: 'select id, name from users where email = $1 and password = $2',
-        values: [req.body.email, req.body.password]
+        text: `select id, name from users where email = '${req.body.email}' and password = '${req.body.password}'`
     };
     pool.query(query, function (error, results) {
-        if (error) throw error;
-        if (results.length === 0) {
+        if (error) {
+            res.render('login', { title: 'Login', errorMsg: '不正なパラメータです' });
+        }
+        else if (results.rows.length === 0) {
             res.render('login', { title: 'Login', errorMsg: 'Emailまたは、Passwordが間違っています' });
         }
         else {
@@ -72,8 +78,10 @@ app.get('/menu', sessionCheck, function (req, res) {
         values: [req.query.userid]
     };
     pool.query(query, function (error, results) {
-        if (error) throw error;
-        if (results.length === 0) {
+        if (error) {
+            res.render('login', { title: 'Login', errorMsg: '不正なパラメータです' });
+        }
+        else if (results.rows.length === 0) {
             delete req.session.user;
             res.render('login', { title: 'Login', errorMsg: '不正なパラメータです' });
         }
@@ -157,8 +165,12 @@ app.get('/customer/all/info', sessionCheck, function (req, res) {
               '  uc.customer_id = c.id'
     };
     pool.query(query, function (error, results) {
-        if (error) throw error;
-        res.render('list', { title: '顧客情報', list: results.rows, userId: req.session.user.id});
+        if (error) {
+            res.render('login', { title: 'Login', errorMsg: '不正なパラメータです' });
+        }
+        else {
+            res.render('list', { title: '顧客情報', list: results.rows, userId: req.session.user.id});
+        }
     });
 });
 
